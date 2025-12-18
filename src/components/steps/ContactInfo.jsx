@@ -3,7 +3,7 @@ import React from "react";
 import { Header } from "./Header";
 import { Button } from "./Button";
 import { ContactInput } from "./ContactInput";
-import { animation } from "../constant/animation.var";
+import { animation } from "../constant/animation";
 import { motion } from "framer-motion";
 import { validatorStepOne } from "@/utils/Validators";
 
@@ -28,6 +28,7 @@ export const ContactInfo = ({
 
   return (
     <motion.div
+      key="a"
       animate="active"
       exit="exit"
       initial="enter"

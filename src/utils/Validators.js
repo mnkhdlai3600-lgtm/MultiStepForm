@@ -1,4 +1,6 @@
 import { isEmpty } from "./validationUtils";
+import { isMail } from "./validationUtils";
+import { isPhoneNum } from "./validationUtils";
 
 export const validatorStepOne = (formValues) => {
   const errors = {};
@@ -19,18 +21,37 @@ export const validatorStepOne = (formValues) => {
 };
 export const validatorStepTwo = (formValues) => {
   const secondError = {};
+  const checkSpecial = "!@#$%^&*()_+-=[]{}|;:',.<>/?";
 
-  if (isEmpty(formValues.email)) {
-    secondError.email = "Please confirm your email";
+  if (!isEmpty(formValues.email)) {
+    if (!isMail(formValues.email)) {
+      secondError.email = "jinehen mail";
+    }
+  } else {
+    if (isEmpty(formValues.email)) {
+      secondError.email = "Hooson bj bolohgui";
+    }
   }
-  if (isEmpty(formValues.phoneNumber)) {
-    secondError.phoneNumber = "Please confirm your phoneNumber";
+
+  if (!isEmpty(formValues.phoneNumber)) {
+    if (!isPhoneNum(formValues.phoneNumber)) {
+      secondError.phoneNumber = "8 orontoi too bh esto";
+    }
+  } else {
+    secondError.phoneNumber = "hooson bj bolohgui";
   }
-  if (isEmpty(formValues.password)) {
-    secondError.password = "Please confirm your password";
-  }
-  if (isEmpty(formValues.comfirmPassword)) {
-    secondError.comfirmPassword = "Please confirm your comfirmPassword";
+
+  if (isEmpty(formValues.password) || isEmpty(formValues.comfirmPassword)) {
+    secondError.password = "Please  your password";
+    console.log(secondError);
+  } else if (formValues.password.length < 8) {
+    secondError.password = "Password 8aaas ih orontoi baina baina";
+  } else if (
+    !checkSpecial.split("").some((char) => formValues.password.includes(char))
+  ) {
+    secondError.password = "Tusgai Tesmdegt";
+  } else if (formValues.password !== formValues.comfirmPassword) {
+    secondError.password = "Password taarahgui baina";
   }
 
   const secondIsValid = Object.keys(secondError).length === 0;

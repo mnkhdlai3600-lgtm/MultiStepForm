@@ -1,6 +1,49 @@
-import React from "react";
+import React, { useRef, useState } from "react";
+import { Camera, Trash } from "lucide-react";
 
-export const ProfData = ({ handleChange, formErrors }) => {
+export const ProfData = ({ handleChange, formErrors, setFormValues }) => {
+  const [isDraging, setIsDraging] = useState(false);
+  const inputRef = useRef(null);
+  const [imageUrl, setImgUrl] = useState("");
+
+  const handleBrowserClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  const handleUploadImage = (file) => {
+    const imgUrl = URL.createObjectURL(file);
+    setImgUrl(imgUrl);
+    setFormValues((previous) => ({ ...previous, profileImage: imgUrl }));
+  };
+
+  const imageHandler = (event) => {
+    const uploadedImg = event.target.files[0];
+    handleUploadImage(uploadedImg);
+  };
+
+  const ClearImage = () => {
+    inputRef.current.value = "";
+    setImgUrl("");
+    setFormValues((previous) => ({ ...previous, profileImage: "" }));
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const uploadedImg = Array.from(event.dataTransfer.files).at(0);
+    handleUploadImage(uploadedImg);
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    setIsDraging(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDraging(false);
+  };
+
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-col gap-2">
@@ -13,28 +56,55 @@ export const ProfData = ({ handleChange, formErrors }) => {
           placeholder="--/--/--"
           onChange={handleChange}
           name="date"
-          style={{
-            borderColor: formErrors.date ? "red" : undefined,
-          }}
+          style={{ borderColor: formErrors.date ? "red" : undefined }}
         />
         <p className="text-red-500 text-[14px] font-normal">
           {formErrors.date}
         </p>
       </div>
+
       <div className="flex flex-col gap-2">
         <p className="text-[14px] font-semibold">
           Profile image <span className="text-red-500">*</span>
         </p>
-        <div className="bg-gray-100 w-full h-45 rounded-lg flex justify-center items-center ">
+
+        <div
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          onClick={handleBrowserClick}
+          className={`bg-gray-100 w-full h-45 rounded-lg flex justify-center items-center flex-col border-5 ${
+            isDraging
+              ? "border-dashed border-green-400"
+              : "border-solid border-transparent"
+          }`}
+        >
+          <Camera />
+
           <input
+            ref={inputRef}
+            hidden
             type="file"
             name="profileImage"
-            onChange={handleChange}
+            onChange={imageHandler}
             style={{
               borderColor: formErrors.profileImage ? "red" : undefined,
             }}
           />
+
+          {imageUrl ? (
+            <img
+              className="w-full h-full bg-cover bg-center"
+              src={imageUrl}
+              alt="image"
+            />
+          ) : (
+            "Add Photo"
+          )}
         </div>
+        <button onClick={ClearImage}>
+          <Trash />
+        </button>
         <p className="text-red-500 text-[14px] font-normal">
           {formErrors.profileImage}
         </p>

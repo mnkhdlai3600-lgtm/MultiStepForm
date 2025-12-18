@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "./Header";
 import { Button } from "./Button";
 import { PrivateInput } from "./PrivateInput";
-import { animation } from "../constant/animation.var";
+import { animation } from "../constant/animation";
 import { motion } from "framer-motion";
 import { validatorStepTwo } from "@/utils/Validators";
 
@@ -26,6 +26,7 @@ export const PrivateInfo = ({
   };
   return (
     <motion.div
+      key="b"
       animate="active"
       exit="exit"
       initial="enter"

@@ -1,10 +1,11 @@
 import React from "react";
-import { animation } from "../constant/animation.var";
+import { animation } from "../constant/animation";
 import { motion } from "framer-motion";
 
 export const Success = () => {
   return (
     <motion.div
+      key="d"
       animate="active"
       exit="exit"
       initial="enter"

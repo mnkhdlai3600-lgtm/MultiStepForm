@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+
 import { ContactInfo, PrivateInfo, Profile, Success } from "@/components/steps";
 import { AnimatePresence } from "framer-motion";
 import { initialValues } from "@/components/constant/initial";
 
 const Main = () => {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(2);
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState(initialValues);
 
@@ -37,6 +38,7 @@ const Main = () => {
           formErrors={formErrors}
           setFormErrors={setFormErrors}
           setStep={setStep}
+          setFormValues={setFormValues}
         />
       </AnimatePresence>
     </div>

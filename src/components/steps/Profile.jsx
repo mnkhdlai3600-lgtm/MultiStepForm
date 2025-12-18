@@ -3,11 +3,12 @@ import React from "react";
 import { Header } from "./Header";
 import { Button } from "./Button";
 import { ProfData } from "./ProfData";
-import { animation } from "../constant/animation.var";
+import { animation } from "../constant/animation";
 import { motion } from "framer-motion";
 import { validatorStepThree } from "@/utils/Validators";
 
 export const Profile = ({
+  setFormValues,
   handlePrevios,
   handleClick,
   handleChange,
@@ -31,6 +32,7 @@ export const Profile = ({
       exit="exit"
       initial="enter"
       variants={animation}
+      key="c"
       className="flex flex-col gap-25.5 bg-white p-8 rounded-2xl"
     >
       <div className="flex flex-col gap-7">
@@ -40,6 +42,7 @@ export const Profile = ({
           formErrors={formErrors}
           setFormErrors={setFormErrors}
           formValues={formValues}
+          setFormValues={setFormValues}
         />
       </div>
       <Button
