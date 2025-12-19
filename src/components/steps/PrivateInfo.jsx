@@ -1,10 +1,11 @@
-import React from "react";
+import { useEffect } from "react";
 import { Header } from "./Header";
 import { Button } from "./Button";
 import { PrivateInput } from "./PrivateInput";
 import { animation } from "../constant/animation";
 import { motion } from "framer-motion";
 import { validatorStepTwo } from "@/utils/Validators";
+import { saveFormValues } from "@/utils/localeStorage";
 
 export const PrivateInfo = ({
   handlePrevios,
@@ -22,8 +23,10 @@ export const PrivateInfo = ({
     setFormErrors(secondError);
     if (secondIsValid) {
       handleClick();
+      saveFormValues(formValues, step);
     }
   };
+
   return (
     <motion.div
       key="b"
@@ -35,7 +38,11 @@ export const PrivateInfo = ({
     >
       <div className="flex flex-col gap-7">
         <Header />
-        <PrivateInput handleChange={handleChange} formErrors={formErrors} />
+        <PrivateInput
+          handleChange={handleChange}
+          formErrors={formErrors}
+          formValues={formValues}
+        />
       </div>
 
       <Button

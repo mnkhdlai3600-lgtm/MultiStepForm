@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 
 import { Header } from "./Header";
 import { Button } from "./Button";
@@ -6,6 +6,7 @@ import { ContactInput } from "./ContactInput";
 import { animation } from "../constant/animation";
 import { motion } from "framer-motion";
 import { validatorStepOne } from "@/utils/Validators";
+import { saveFormValues } from "@/utils/localeStorage";
 
 export const ContactInfo = ({
   handlePrevios,
@@ -23,6 +24,7 @@ export const ContactInfo = ({
     setFormErrors(errors);
     if (isValid) {
       handleClick();
+      saveFormValues(formValues, step);
     }
   };
 

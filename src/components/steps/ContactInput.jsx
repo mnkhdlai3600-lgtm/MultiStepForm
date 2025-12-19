@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ContactInput = ({ handleChange, formErrors }) => {
+export const ContactInput = ({ handleChange, formErrors, formValues }) => {
   return (
     <div className="flex flex-col gap-3">
       <div className=" flex gap-2 flex-col ">
@@ -8,6 +8,7 @@ export const ContactInput = ({ handleChange, formErrors }) => {
           First name <span className="text-red-500">*</span>
         </p>
         <input
+          value={formValues.firstName}
           onChange={handleChange}
           className="rounded-lg border-gray-300 border w-full h-11 pl-3"
           type="text"
@@ -25,6 +26,7 @@ export const ContactInput = ({ handleChange, formErrors }) => {
           Last name <span className="text-red-500">*</span>
         </p>
         <input
+          value={formValues.lastName}
           onChange={handleChange}
           className="rounded-lg border-gray-300 border w-full h-11 pl-3"
           type="text"
@@ -40,6 +42,7 @@ export const ContactInput = ({ handleChange, formErrors }) => {
           Username <span className="text-red-500">*</span>
         </p>
         <input
+          value={formValues.userName}
           onChange={handleChange}
           className="rounded-lg border-gray-300 border w-full h-11 pl-3"
           type="text"

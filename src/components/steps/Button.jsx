@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export const Button = ({ handleClick, handlePrevios, step, setStep }) => {
+export const Button = ({ handleClick, handlePrevios, step }) => {
   return (
     <div className="flex gap-2">
       {step === 1 ? (

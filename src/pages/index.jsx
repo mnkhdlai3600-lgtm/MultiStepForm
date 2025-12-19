@@ -1,11 +1,12 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import { ContactInfo, PrivateInfo, Profile, Success } from "@/components/steps";
 import { AnimatePresence } from "framer-motion";
 import { initialValues } from "@/components/constant/initial";
+import { retrieveFormValues } from "@/utils/localeStorage";
 
 const Main = () => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState(initialValues);
 
@@ -24,6 +25,16 @@ const Main = () => {
   };
 
   const Container = [ContactInfo, PrivateInfo, Profile, Success][step];
+
+  useEffect(() => {
+    const valueFromLocaleStorage = retrieveFormValues();
+    console.log(valueFromLocaleStorage);
+    if (valueFromLocaleStorage) {
+      setFormValues(valueFromLocaleStorage);
+
+      setStep(valueFromLocaleStorage.step);
+    }
+  }, []);
 
   return (
     <div className="bg-gray-100  w-screen h-screen m-auto flex justify-center items-center">

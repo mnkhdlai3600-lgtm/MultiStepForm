@@ -1,6 +1,6 @@
 import React from "react";
 
-export const PrivateInput = ({ handleChange, formErrors }) => {
+export const PrivateInput = ({ handleChange, formErrors, formValues }) => {
   return (
     <div className="flex flex-col gap-3">
       <div className=" flex gap-2 flex-col">
@@ -8,6 +8,7 @@ export const PrivateInput = ({ handleChange, formErrors }) => {
           Email <span className="text-red-500">*</span>
         </p>
         <input
+          value={formValues.email}
           name="email"
           className="rounded-lg border-gray-300 border w-full h-11 pl-3 "
           type="text"
@@ -26,6 +27,7 @@ export const PrivateInput = ({ handleChange, formErrors }) => {
           Phone number <span className="text-red-500">*</span>
         </p>
         <input
+          value={formValues.phoneNumber}
           name="phoneNumber"
           className="rounded-lg border-gray-300 border w-full h-11 pl-3"
           type="text"
@@ -44,6 +46,7 @@ export const PrivateInput = ({ handleChange, formErrors }) => {
           Password <span className="text-red-500">*</span>
         </p>
         <input
+          value={formValues.password}
           name="password"
           className="rounded-lg border-gray-300 border w-full h-11 pl-3"
           type="password"
@@ -62,6 +65,7 @@ export const PrivateInput = ({ handleChange, formErrors }) => {
           Comfirm Password <span className="text-red-500">*</span>
         </p>
         <input
+          value={formValues.comfirmPassword}
           name="comfirmPassword"
           className="rounded-lg border-gray-300 border w-full h-11 pl-3"
           type="password"

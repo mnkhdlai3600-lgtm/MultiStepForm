@@ -1,7 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Camera, X } from "lucide-react";
 
-export const ProfData = ({ handleChange, formErrors, setFormValues }) => {
+export const ProfData = ({
+  handleChange,
+  formErrors,
+  setFormValues,
+  formValues,
+}) => {
   const [isDraging, setIsDraging] = useState(false);
   const inputRef = useRef(null);
   const [imageUrl, setImgUrl] = useState("");
@@ -20,6 +25,7 @@ export const ProfData = ({ handleChange, formErrors, setFormValues }) => {
 
   const imageHandler = (event) => {
     const uploadedImg = event.target.files[0];
+
     handleUploadImage(uploadedImg);
   };
 
@@ -51,6 +57,7 @@ export const ProfData = ({ handleChange, formErrors, setFormValues }) => {
           Date of birth <span className="text-red-500">*</span>
         </p>
         <input
+          value={formValues.date}
           className="w-full border border-gray-300 rounded-lg h-11 pl-3"
           type="Date"
           placeholder="--/--/--"
