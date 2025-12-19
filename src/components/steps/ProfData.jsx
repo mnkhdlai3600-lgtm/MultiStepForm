@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Camera, Trash } from "lucide-react";
+import { Camera, X } from "lucide-react";
 
 export const ProfData = ({ handleChange, formErrors, setFormValues }) => {
   const [isDraging, setIsDraging] = useState(false);
@@ -73,7 +73,7 @@ export const ProfData = ({ handleChange, formErrors, setFormValues }) => {
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onClick={handleBrowserClick}
-          className={`bg-gray-100 w-full h-45 rounded-lg flex justify-center items-center flex-col border-5 ${
+          className={`bg-gray-100 w-full h-45 rounded-lg flex justify-center items-center flex-col border-5 relative ${
             isDraging
               ? "border-dashed border-green-400"
               : "border-solid border-transparent"
@@ -94,17 +94,25 @@ export const ProfData = ({ handleChange, formErrors, setFormValues }) => {
 
           {imageUrl ? (
             <img
-              className="w-full h-full bg-cover bg-center"
+              className="w-full rounded-md h-full bg-cover bg-center"
               src={imageUrl}
               alt="image"
             />
           ) : (
             "Add Photo"
           )}
+          <button
+            className={`${
+              imageUrl
+                ? "absolute top-2 left-91 text-white  bg-black p-1 rounded-full"
+                : "hidden"
+            }`}
+            onClick={ClearImage}
+          >
+            <X />
+          </button>
         </div>
-        <button onClick={ClearImage}>
-          <Trash />
-        </button>
+
         <p className="text-red-500 text-[14px] font-normal">
           {formErrors.profileImage}
         </p>
