@@ -19,7 +19,6 @@ export const PrivateInfo = ({
 }) => {
   const handleSubmitTwo = () => {
     const { secondError, secondIsValid } = validatorStepTwo(formValues);
-    console.log(secondError);
     setFormErrors(secondError);
     if (secondIsValid) {
       handleClick();

@@ -45,7 +45,6 @@ export const validatorStepTwo = (formValues) => {
 
   if (isEmpty(formValues.password) || isEmpty(formValues.comfirmPassword)) {
     secondError.password = "Password fields cannot be empty.";
-    console.log(secondError);
   } else if (formValues.password.length < 8) {
     secondError.password = "Password must be at least 8 characters long.";
   } else if (

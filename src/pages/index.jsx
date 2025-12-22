@@ -28,7 +28,6 @@ const Main = () => {
 
   useEffect(() => {
     const valueFromLocaleStorage = retrieveFormValues();
-    console.log(valueFromLocaleStorage);
     if (valueFromLocaleStorage) {
       setFormValues(valueFromLocaleStorage);
 
